@@ -33,13 +33,13 @@ COPY .env .
 RUN mix deps.get
 RUN mix compile
 
-FROM install_stage as setup_stage
+# FROM install_stage as setup_stage
 # COPY --from=0 /app /app
 # FROM ${RUNNER_IMAGE} as runner
-# COPY --from=builder /app /app
 # WORKDIR /app
+# COPY --from=install_stage /app .
 # RUN mix ecto.create
 # RUN mix ecto.migrate
 
-# ENTRYPOINT ["iex -S mix"]
-ENTRYPOINT ["/bin/bash"]
+CMD ["mix", "phx.server"]
+# ENTRYPOINT ["/bin/bash"]

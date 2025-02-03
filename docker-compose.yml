@@ -2,7 +2,7 @@ services:
   app:
     build: .
     ports:
-      - "4000:5000"
+      - "5005:4000"
     depends_on:
       - db
     tty: true
