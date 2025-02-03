@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    ports:
+      - "4000:5000"
+    depends_on:
+      - db
+    tty: true
+    env_file:
+      - .env
+
+  db:
+    image: postgres:16.3-alpine
+    ports:
+      - "6432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    command: postgres
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
